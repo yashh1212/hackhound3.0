@@ -1,13 +1,23 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Brain, Shield, Target, BookCheck, UserCheck, Layout, Settings, Zap, Award } from 'lucide-react';
-import { useTheme } from './hooks/useTheme';
-import ErrorBoundary from './components/ErrorBoundary';
-import { Navbar } from './components/Navigation/Navbar';
-import { Hero } from './components/Hero/Hero';
-import { FeatureCard } from './components/Features/FeatureCard';
-import { StatCard } from './components/Features/StatCard';
-import { FeatureListItem } from './components/Features/FeatureListItem';
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
+import {
+  Brain,
+  Shield,
+  Target,
+  BookCheck,
+  UserCheck,
+  Layout,
+  Settings,
+  Zap,
+  Award,
+} from "lucide-react";
+import { useTheme } from "./hooks/useTheme";
+import ErrorBoundary from "./components/ErrorBoundary";
+import { Navbar } from "./components/Navigation/Navbar";
+import { Hero } from "./components/Hero/Hero";
+import { FeatureCard } from "./components/Features/FeatureCard";
+import { StatCard } from "./components/Features/StatCard";
+import { FeatureListItem } from "./components/Features/FeatureListItem";
 
 function App() {
   const { theme, toggleTheme } = useTheme();
@@ -15,32 +25,38 @@ function App() {
   useEffect(() => {
     // Create animated background dots
     const createDots = () => {
-      const dotsContainer = document.querySelector('.animated-dots');
+      const dotsContainer = document.querySelector(".animated-dots");
       if (!dotsContainer) return;
 
       // Clear existing dots
-      dotsContainer.innerHTML = '';
+      dotsContainer.innerHTML = "";
 
       // Create new dots
       for (let i = 0; i < 50; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'dot';
+        const dot = document.createElement("div");
+        dot.className = "dot";
         dot.style.left = `${Math.random() * 100}%`;
         dot.style.top = `${Math.random() * 100}%`;
-        dot.style.animation = `float ${3 + Math.random() * 7}s ease-in-out infinite`;
+        dot.style.animation = `float ${
+          3 + Math.random() * 7
+        }s ease-in-out infinite`;
         dot.style.animationDelay = `${Math.random() * 5}s`;
         dotsContainer.appendChild(dot);
       }
     };
 
     createDots();
-    window.addEventListener('resize', createDots);
-    return () => window.removeEventListener('resize', createDots);
+    window.addEventListener("resize", createDots);
+    return () => window.removeEventListener("resize", createDots);
   }, []);
 
   return (
     <ErrorBoundary>
-      <div className={`min-h-screen relative animated-bg ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>
+      <div
+        className={`min-h-screen relative animated-bg ${
+          theme === "dark" ? "dark-theme" : "light-theme"
+        }`}
+      >
         <div className="animated-dots" />
         <div className="relative z-10">
           <Navbar theme={theme} toggleTheme={toggleTheme} />
@@ -77,7 +93,7 @@ function App() {
             </div>
 
             <div className="mt-20">
-              <motion.h2 
+              <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
